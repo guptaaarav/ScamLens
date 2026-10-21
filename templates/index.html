@@ -1,0 +1,736 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f5ff">
+    <title>ScamLens — Is This a Financial Scam?</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background: #f8f5ff;
+            --surface: #ffffff;
+            --surface-soft: #fbfaff;
+            --lavender: #9275d8;
+            --lavender-dark: #7354bd;
+            --lavender-light: #e9e0ff;
+            --blue: #cce8f5;
+            --pink: #f7d9e3;
+            --plum: #34284d;
+            --muted: #776b8b;
+            --border: #e6ddf4;
+            --green-bg: #e0f3e8;
+            --green-text: #276547;
+            --red-bg: #fbe4e8;
+            --red-text: #a72e48;
+            --yellow-bg: #fff0d5;
+            --yellow-text: #805a1e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at 0% 0%, #eee7ff 0, transparent 35%),
+                var(--background);
+            color: var(--plum);
+            font-family: "Nunito", sans-serif;
+            line-height: 1.65;
+        }
+
+        button,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--lavender);
+            outline-offset: 3px;
+        }
+
+        .shell {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand img {
+            display: block;
+            width: 150px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .top-note {
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: #ffffffa8;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            align-items: end;
+            gap: 48px;
+            padding: 78px 0 48px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--lavender-dark);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 25px;
+            height: 3px;
+            border-radius: 5px;
+            background: var(--lavender);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Outfit", sans-serif;
+        }
+
+        h1 {
+            margin: 18px 0 0;
+            font-size: clamp(3.2rem, 7.5vw, 6.6rem);
+            font-weight: 700;
+            line-height: 0.98;
+            letter-spacing: -3px;
+        }
+
+        h1 span {
+            color: var(--lavender);
+        }
+
+        .hero-aside {
+            padding: 22px 24px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: #ffffffb8;
+        }
+
+        .hero-aside p {
+            margin: 0 0 10px;
+            color: var(--muted);
+            font-size: 0.97rem;
+        }
+
+        .hero-aside strong {
+            color: var(--plum);
+            font-family: "Outfit", sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            align-items: start;
+            gap: 22px;
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--surface);
+            box-shadow: 0 10px 35px #66508a0a;
+        }
+
+        .analyser {
+            padding: 30px;
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: var(--lavender-light);
+            color: var(--lavender-dark);
+            font-family: "Outfit", sans-serif;
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            margin: 5px 0 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.7px;
+            line-height: 1.2;
+        }
+
+        .subtext {
+            margin: 10px 0 18px;
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+            min-height: 220px;
+            padding: 17px;
+            resize: vertical;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: var(--surface-soft);
+            color: var(--plum);
+            line-height: 1.7;
+            transition: border-color 150ms, box-shadow 150ms;
+        }
+
+        textarea::placeholder {
+            color: #a69bb7;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--lavender);
+            box-shadow: 0 0 0 4px #9275d81c;
+        }
+
+        .form-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .primary {
+            padding: 13px 21px;
+            border: none;
+            border-radius: 12px;
+            background: var(--lavender);
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 5px 14px #9275d82b;
+            transition: background 150ms, transform 150ms;
+        }
+
+        .primary:hover:not(:disabled) {
+            background: var(--lavender-dark);
+            transform: translateY(-1px);
+        }
+
+        .primary:disabled {
+            opacity: 0.65;
+            cursor: wait;
+        }
+
+        .clear-button {
+            padding: 10px 5px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-weight: 800;
+        }
+
+        .clear-button:hover {
+            color: var(--lavender-dark);
+        }
+
+        .status {
+            min-height: 24px;
+            margin: 14px 0 0;
+            color: var(--muted);
+            font-size: 0.87rem;
+        }
+
+        .side-panel {
+            padding: 28px;
+            background: linear-gradient(145deg, #eee7ff, #f8f5ff 75%);
+        }
+
+        .side-panel h2 {
+            margin: 18px 0 12px;
+            font-size: 2rem;
+        }
+
+        .side-panel > p {
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 38px 1fr;
+            gap: 12px;
+            padding: 17px 0;
+            border-top: 1px solid #ded3f1;
+        }
+
+        .step-icon {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: white;
+            color: var(--lavender-dark);
+            font-family: "Outfit", sans-serif;
+            font-weight: 800;
+        }
+
+        .step strong {
+            display: block;
+            margin-bottom: 3px;
+            font-family: "Outfit", sans-serif;
+            font-size: 0.98rem;
+        }
+
+        .step span:last-child {
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .results {
+            margin-top: 24px;
+            padding: 30px;
+            scroll-margin-top: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
+            flex-wrap: wrap;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .risk {
+            display: inline-block;
+            padding: 7px 13px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--surface-soft);
+            color: var(--plum);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .risk.high {
+            background: var(--red-bg);
+            border-color: #f2c5cf;
+            color: var(--red-text);
+        }
+
+        .risk.medium {
+            background: var(--yellow-bg);
+            border-color: #f2d9a5;
+            color: var(--yellow-text);
+        }
+
+        .risk.low {
+            background: var(--green-bg);
+            border-color: #bde3cb;
+            color: var(--green-text);
+        }
+
+        .score {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .result-section {
+            padding-top: 25px;
+        }
+
+        .result-section h3 {
+            margin: 0 0 8px;
+            font-size: 1.45rem;
+            font-weight: 700;
+        }
+
+        .result-description {
+            margin: 0 0 18px;
+            color: var(--muted);
+            font-size: 0.91rem;
+        }
+
+        .evidence-item {
+            padding: 18px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .evidence-phrase {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 5px 10px;
+            border: 1px solid #f0c5d5;
+            border-radius: 8px;
+            background: #fff0f5;
+            color: #923c64;
+            font-size: 0.9rem;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .evidence-item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .recommendation {
+            margin: 0;
+            padding: 18px;
+            border: 1px solid #c7e8d5;
+            border-left: 4px solid #73bd91;
+            border-radius: 12px;
+            background: var(--green-bg);
+            color: var(--green-text);
+            font-size: 0.94rem;
+        }
+
+        .disclaimer {
+            margin: 25px 0 0;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.83rem;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 58px;
+            padding: 22px 0 30px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 800px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding-top: 55px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .shell {
+                width: calc(100% - 28px);
+            }
+
+            .brand img {
+                width: 120px;
+            }
+
+            .top-note {
+                max-width: 135px;
+                text-align: center;
+                font-size: 0.7rem;
+            }
+
+            h1 {
+                font-size: clamp(2.9rem, 14vw, 4.2rem);
+            }
+
+            .analyser,
+            .side-panel,
+            .results {
+                padding: 21px;
+            }
+
+            .form-bottom {
+                align-items: stretch;
+            }
+
+            .primary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="shell topbar">
+        <div class="brand">
+            <img
+                src="{{ url_for('static', filename='scamlens-logo.png') }}"
+                alt="ScamLens logo"
+            >
+        </div>
+       
+    </header>
+
+    <main class="shell">
+        <section class="hero">
+            <div>
+                <div class="eyebrow">Never let scammers know your next move</div>
+                <h1>IS THIS<br>A FINANCIAL<br><span>SCAM?</span></h1>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="card analyser">
+                <div class="section-top">
+                    <div>
+                        <div class="eyebrow">Inspect</div>
+                        <h2>Put it under the lens.</h2>
+                    </div>
+                    
+                </div>
+
+                <p class="subtext">
+                    Paste the SMS, email, or payment request you want to check.
+                </p>
+
+                <form id="analysis-form">
+                    <textarea
+                        id="message"
+                        name="message"
+                        maxlength="10000"
+                        placeholder="Paste the suspicious message here..."
+                        required
+                    ></textarea>
+
+                    <div class="form-bottom">
+                        <button class="primary" id="analyse-button" type="submit">
+                            Analyse message &nbsp; →
+                        </button>
+                        <button class="clear-button" id="clear-button" type="button">
+                            Clear text
+                        </button>
+                    </div>
+                </form>
+
+                <p class="status" id="status" role="status" aria-live="polite"></p>
+            </section>
+
+            <aside class="card side-panel">
+                <div class="eyebrow">Know the signs</div>
+                <h2>Scams rely on your next move.</h2>
+                <p>
+                    Some checks to keep in mind include:-
+                </p>
+
+                <div class="step">
+                    <span class="step-icon">01</span>
+                    <div>
+                        <strong>Urgency</strong>
+                        <span>Threats, countdowns, and pressure to act quickly.</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-icon">02</span>
+                    <div>
+                        <strong>Unexpected requests</strong>
+                        <span>Demands for payments, passwords, PINs, or OTPs.</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <span class="step-icon">03</span>
+                    <div>
+                        <strong>Suspicious links</strong>
+                        <span>Links that hide where they will actually take you.</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <section class="card results hidden" id="results" aria-live="polite">
+            <div class="results-header">
+                <div>
+                    
+                    <h2>Your analysis</h2>
+                    <p class="score" id="score"></p>
+                </div>
+                <span class="risk" id="risk-level">Uncertain</span>
+            </div>
+
+            <div class="result-section">
+                <h3>Evidence:-</h3>
+                <p class="result-description">
+                    Specific phrases and patterns that triggered a warning.
+                </p>
+                <div id="evidence-list"></div>
+            </div>
+
+            <div class="result-section">
+                <h3>What should you do?</h3>
+                <p class="recommendation" id="recommendation"></p>
+            </div>
+
+            <p class="disclaimer">
+                ScamLens provides only an assesment of the risk based on data. It does not guarentee if a message is safe or not.
+                Verify messages based on account numbers, official websites or trusted phone numbers.
+            </p>
+        </section>
+    </main>
+
+    <footer class="shell">
+        <span></span>
+        <span>Scam lens</span>
+    </footer>
+
+    <script>
+        const form = document.getElementById("analysis-form");
+        const messageInput = document.getElementById("message");
+        const analyseButton = document.getElementById("analyse-button");
+        const clearButton = document.getElementById("clear-button");
+        const status = document.getElementById("status");
+        const results = document.getElementById("results");
+        const riskLevel = document.getElementById("risk-level");
+        const score = document.getElementById("score");
+        const evidenceList = document.getElementById("evidence-list");
+        const recommendation = document.getElementById("recommendation");
+
+        function addEvidence(signal) {
+            const item = document.createElement("div");
+            item.className = "evidence-item";
+
+            const phrase = document.createElement("div");
+            phrase.className = "evidence-phrase";
+            phrase.textContent = signal.evidence.join(", ");
+
+            const explanation = document.createElement("p");
+            explanation.textContent = signal.explanation;
+
+            item.append(phrase, explanation);
+            evidenceList.appendChild(item);
+        }
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const message = messageInput.value.trim();
+
+            if (!message) {
+                status.textContent = "Paste a message before analysing it.";
+                return;
+            }
+
+            analyseButton.disabled = true;
+            status.textContent = "Looking for warning signs...";
+            results.classList.add("hidden");
+
+            try {
+                const response = await fetch("/analyse", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Analysis failed.");
+                }
+
+                riskLevel.textContent = data.risk_level;
+                riskLevel.className =
+                    "risk " + data.risk_level.toLowerCase();
+
+                score.textContent = "Risk Score: " + data.score + "/10"; 
+                evidenceList.replaceChildren();
+
+                if (data.signals.length === 0) {
+                    const emptyMessage = document.createElement("p");
+                    emptyMessage.className = "result-description";
+                    emptyMessage.textContent =
+                        "No configured warning signs were found. This does not prove the message is safe.";
+                    evidenceList.appendChild(emptyMessage);
+                } else {
+                    data.signals.forEach(addEvidence);
+                }
+
+                recommendation.textContent = data.recommendation;
+                results.classList.remove("hidden");
+                status.textContent = "Analysis complete.";
+
+                results.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            } catch (error) {
+                status.textContent =
+                    error.message || "Could not analyse the message. Try again.";
+            } finally {
+                analyseButton.disabled = false;
+            }
+        });
+
+        clearButton.addEventListener("click", () => {
+            form.reset();
+            results.classList.add("hidden");
+            status.textContent = "";
+            messageInput.focus();
+        });
+    </script>
+</body>
+</html>
