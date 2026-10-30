@@ -1,0 +1,3 @@
+Scam Lens is an intelligent scam detection platform designed to help people identify potentially fraudulent messages, suspicious links, and online threats.
+As online scams become increasingly sophisticated, fraudulent messages often disguise themselves as legitimate communications from banks, delivery services, companies, or trusted individuals. These messages can exploit trust, create urgency, and trick people into sharing sensitive information or interacting with malicious links .
+Scam Lens provides users with an accessible way to assess suspicious text, identify potential warning signs, and make more informed decisions before responding to questionable communications.
