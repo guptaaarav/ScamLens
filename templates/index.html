@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,24 +12,32 @@
 
     <style>
         :root {
-            --background: #f8f5ff;
-            --surface: #ffffff;
-            --surface-soft: #fbfaff;
-            --lavender: #9275d8;
-            --lavender-dark: #7354bd;
-            --lavender-light: #e9e0ff;
-            --blue: #cce8f5;
-            --pink: #f7d9e3;
-            --plum: #34284d;
-            --muted: #776b8b;
-            --border: #e6ddf4;
-            --green-bg: #e0f3e8;
-            --green-text: #276547;
-            --red-bg: #fbe4e8;
-            --red-text: #a72e48;
-            --yellow-bg: #fff0d5;
-            --yellow-text: #805a1e;
-        }
+    --background: #20104F; 
+    --surface: linear-gradient(
+        145deg,
+        #b37029,
+        #956912 85%
+    );
+    --surface-soft: #302052;
+
+    --lavender: #C12D7B;
+    --lavender-dark: #A72268;
+    --lavender-light: #EBC1D9;
+
+    --blue: #352078;
+    --pink: #F4D5E7;
+
+    --plum: #FFFFFF;
+    --muted: #D0C5E8;
+    --border: #514087;
+
+    --green-bg: #DDF3E6;
+    --green-text: #245D43;
+    --red-bg: #FBE5DF;
+    --red-text: #A44335;
+    --yellow-bg: #FFF0D5;
+    --yellow-text: #805A1E;
+}
 
         * {
             box-sizing: border-box;
@@ -44,11 +51,22 @@
             margin: 0;
             min-height: 100vh;
             background:
-                radial-gradient(ellipse at 0% 0%, #eee7ff 0, transparent 35%),
+                radial-gradient(ellipse at 0% 0%, #8d7faf 0, transparent 35%),
                 var(--background);
             color: var(--plum);
             font-family: "Nunito", sans-serif;
             line-height: 1.65;
+            body {
+    background:
+        radial-gradient(
+            ellipse at 0% 0%,
+            #352078 0,
+            transparent 45%
+        ),
+        var(--background);
+    color: var(--plum);
+}
+
         }
 
         button,
@@ -115,6 +133,16 @@
             letter-spacing: 1.7px;
             text-transform: uppercase;
         }
+        .eyebroww {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #FAF9F6;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+        }
 
         .eyebrow::before {
             content: "";
@@ -123,7 +151,13 @@
             border-radius: 5px;
             background: var(--lavender);
         }
-
+        .eyebroww::before {
+            content: "";
+            width: 25px;
+            height: 3px;
+            border-radius: 5px;
+            background: #FAF9F6;
+        }
         h1,
         h2,
         h3 {
@@ -172,7 +206,7 @@
             border: 1px solid var(--border);
             border-radius: 20px;
             background: var(--surface);
-            box-shadow: 0 10px 35px #66508a0a;
+            box-shadow: 0 10px 35px #afcdc40a;
         }
 
         .analyser {
@@ -286,10 +320,14 @@
             font-size: 0.87rem;
         }
 
-        .side-panel {
-            padding: 28px;
-            background: linear-gradient(145deg, #eee7ff, #f8f5ff 75%);
-        }
+       .side-panel {
+        padding: 35px;
+    background: linear-gradient(
+        145deg,
+        #c43846,
+        #87094a 85%
+    );
+}
 
         .side-panel h2 {
             margin: 18px 0 12px;
@@ -527,7 +565,7 @@
     <main class="shell">
         <section class="hero">
             <div>
-                <div class="eyebrow">Never let scammers know your next move</div>
+                <div class="eyebroww">Never let scammers know your next move</div>
                 <h1>IS THIS<br>A FINANCIAL<br><span>SCAM?</span></h1>
             </div>
         </section>
@@ -536,7 +574,7 @@
             <section class="card analyser">
                 <div class="section-top">
                     <div>
-                        <div class="eyebrow">Inspect</div>
+                        <div class="eyebroww">Inspect</div>
                         <h2>Put it under the lens.</h2>
                     </div>
                     
@@ -569,9 +607,9 @@
             </section>
 
             <aside class="card side-panel">
-                <div class="eyebrow">Know the signs</div>
+                <div class="eyebroww">Know the signs</div>
                 <h2>Scams rely on your next move.</h2>
-                <p>
+                <p style="color: #deddd8;">
                     Some checks to keep in mind include:-
                 </p>
 
@@ -579,7 +617,7 @@
                     <span class="step-icon">01</span>
                     <div>
                         <strong>Urgency</strong>
-                        <span>Threats, countdowns, and pressure to act quickly.</span>
+                        <span style="color: #deddd8;">Threats, countdowns, and pressure to act quickly.</span>
                     </div>
                 </div>
 
@@ -587,7 +625,7 @@
                     <span class="step-icon">02</span>
                     <div>
                         <strong>Unexpected requests</strong>
-                        <span>Demands for payments, passwords, PINs, or OTPs.</span>
+                        <span style="color: #deddd8;">Demands for payments, passwords, PINs, or OTPs.</span>
                     </div>
                 </div>
 
@@ -595,7 +633,7 @@
                     <span class="step-icon">03</span>
                     <div>
                         <strong>Suspicious links</strong>
-                        <span>Links that hide where they will actually take you.</span>
+                        <span style="color: #deddd8;">Links that hide where they will actually take you.</span>
                     </div>
                 </div>
             </aside>
@@ -633,7 +671,7 @@
 
     <footer class="shell">
         <span></span>
-        <span>Scam lens</span>
+        <span>ScamLens</span>
     </footer>
 
     <script>
